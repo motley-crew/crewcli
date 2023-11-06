@@ -24,7 +24,7 @@ module2() {
 
 lokalise() {
     echo "Lokalise functionality goes here..."
-     ./lokalise.sh "$@"
+     ./bin/lokalise.sh "$@"
 }
 
 main() {
