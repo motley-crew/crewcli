@@ -2,7 +2,9 @@
   "name": "edgecli",
   "version": "0.0.1",
   "description": "A collection of bash scripts for different modules",
-  "scripts": {},
+  "scripts": {
+    "test": "npm link && edgecli"
+  },
   "bin": {
     "edgecli": "./main.sh"
   },
