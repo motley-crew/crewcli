@@ -1,0 +1,16 @@
+{
+  "name": "edgecli",
+  "version": "1.0.0",
+  "description": "A collection of bash scripts for different modules",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "lokalise": "./bin/lokalise.sh",
+    "module": "./bin/module.sh"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
