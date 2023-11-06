@@ -22,22 +22,28 @@ module2() {
     echo "Module2 functionality goes here..."
 }
 
+lokalise() {
+    echo "Lokalise functionality goes here..."
+     ./lokalise.sh "$@"
+}
+
 main() {
     if [[ $# -eq 0 ]]; then
         print_usage
         exit 1
     fi
 
+    case "$1" in
         lokalise)
             shift
-            ./lokalise.sh "$@"
+            lokalise "$@"
             ;;
         module1)
-            shift # Remove 'module1' from the arguments list
+            shift
             module1 "$@"
             ;;
         module2)
-            shift # Remove 'module2' from the arguments list
+            shift
             module2 "$@"
             ;;
         -h|--help)
@@ -52,4 +58,3 @@ main() {
 }
 
 main "$@"
-
