@@ -6,25 +6,18 @@ Usage: ${0} [command] [options]
 
 Commands:
   lokalise            Manage lokalisation tasks
-  module1             Description for module1
-  module2             Description for module2
-  ...
+  version             Manage versioning tasks
 
 Use "${0} [command] -h" for more information about a command.
 EOF
 }
 
-module1() {
-    echo "Module1 functionality goes here..."
-}
-
-module2() {
-    echo "Module2 functionality goes here..."
-}
-
 lokalise() {
-    echo "Lokalise functionality goes here..."
      ./bin/lokalise.sh "$@"
+}
+
+version() {
+      ./bin/version.sh "$@"
 }
 
 main() {
@@ -38,13 +31,9 @@ main() {
             shift
             lokalise "$@"
             ;;
-        module1)
+        version)
             shift
-            module1 "$@"
-            ;;
-        module2)
-            shift
-            module2 "$@"
+            version "$@"
             ;;
         -h|--help)
             print_usage
