@@ -6,6 +6,23 @@ VERSION_CMD="./bin/version_bump"
 VERSION_FILE="package.json"
 VERSION_PATTERN="version"
 
+while getopts "d:f:c:p:" opt; do
+  case $opt in
+    d) PROJECT_DIR="$OPTARG" ;;
+    f) FILE_STRUCTURE="$OPTARG" ;;
+    c) VERSION_CMD="$OPTARG" ;;
+    p) VERSION_PATTERN="$OPTARG" ;;
+    \?) echo "Invalid option -$OPTARG" >&2; exit 1 ;;
+  esac
+done
+
+shift $((OPTIND -1))
+
+if [ -z "$PROJECT_DIR" ] || [ -z "$FILE_STRUCTURE" ] || [ -z "$VERSION_CMD" ] || [ -z "$VERSION_PATTERN" ]; then
+    echo "All parameters are required."
+    exit 1
+fi
+
 print_usage() {
     cat <<EOF
 Usage: ${0} [options] <command>
@@ -53,23 +70,6 @@ bump_ver() {
     git push
     git push --tags
 }
-
-while getopts "d:f:c:p:" opt; do
-  case $opt in
-    d) PROJECT_DIR="$OPTARG" ;;
-    f) FILE_STRUCTURE="$OPTARG" ;;
-    c) VERSION_CMD="$OPTARG" ;;
-    p) VERSION_PATTERN="$OPTARG" ;;
-    \?) echo "Invalid option -$OPTARG" >&2; exit 1 ;;
-  esac
-done
-
-shift $((OPTIND -1))
-
-if [ -z "$PROJECT_DIR" ] || [ -z "$FILE_STRUCTURE" ] || [ -z "$VERSION_CMD" ] || [ -z "$VERSION_PATTERN" ]; then
-    echo "All parameters are required."
-    exit 1
-fi
 
 main() {
     case "$1" in
