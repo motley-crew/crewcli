@@ -34,8 +34,8 @@ Options:
   -p VERSION_PATTERN  Version pattern in package.json
 
 Commands:
-  version-read        read the current version
-  version-bump        bump the package version
+  read        read the current version
+  bump        bump the package version
 EOF
 }
 
@@ -73,10 +73,10 @@ bump_ver() {
 
 main() {
     case "$1" in
-        version-read)
+        read)
             read_ver
             ;;
-        version-bump)
+        bump)
             bump_ver
             ;;
         *)
