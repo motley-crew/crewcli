@@ -1,25 +1,31 @@
 #!/bin/bash
 
-PROJECT_DIR=""
-FILE_STRUCTURE="package-%VERSION%.json"
-VERSION_CMD="./bin/version_bump"
-VERSION_FILE="package.json"
-VERSION_PATTERN="version"
+PROJECT_DIR="$(dirname "$0")/.."
+VERSION_FILES=""
+VERSION_FIELD="version"
 
-while getopts "d:f:c:p:" opt; do
+while getopts "d:f:" opt; do
   case $opt in
     d) PROJECT_DIR="$OPTARG" ;;
-    f) FILE_STRUCTURE="$OPTARG" ;;
-    c) VERSION_CMD="$OPTARG" ;;
-    p) VERSION_PATTERN="$OPTARG" ;;
+    f) VERSION_FILES="$OPTARG" ;;
     \?) echo "Invalid option -$OPTARG" >&2; exit 1 ;;
   esac
 done
 
 shift $((OPTIND -1))
 
-if [ -z "$PROJECT_DIR" ] || [ -z "$FILE_STRUCTURE" ] || [ -z "$VERSION_CMD" ] || [ -z "$VERSION_PATTERN" ]; then
-    echo "All parameters are required."
+if [ -z "$PROJECT_DIR" ] then
+    PROJECT_DIR="."
+fi
+
+if [ -z "$VERSION_FILES" ] then
+    if [ -f "$PROJECT_DIR/package.json" ]; then
+        VERSION_FILES="package.json"
+    fi
+fi
+
+if [ -z "$VERSION_FILES" ] then
+    echo "Cannot determine the version files, bailing out" >&2
     exit 1
 fi
 
@@ -28,10 +34,8 @@ print_usage() {
 Usage: ${0} [options] <command>
 
 Options:
-  -d PROJECT_DIR      Directory of the project with package.json
-  -f FILE_STRUCTURE   Filename structure for the package files
-  -c VERSION_CMD      Path to version command
-  -p VERSION_PATTERN  Version pattern in package.json
+  -d <dir>      Root directory of the project
+  -f <files>    List of files to update version in
 
 Commands:
   read        read the current version
@@ -40,13 +44,13 @@ EOF
 }
 
 read_ver() {
-    grep "\"$VERSION_PATTERN\"" "$PROJECT_DIR/$VERSION_FILE" | sed 's/.*: *"\(.*\)".*/\1/'
+    grep "\"$VERSION_FIELD\"" "$PROJECT_DIR/$VERSION_FILE" | sed 's/.*: *"\(.*\)".*/\1/'
 }
 
 write_ver() {
     local new_version="$1"
     local file="$PROJECT_DIR/$VERSION_FILE"
-    sed "s/\"$VERSION_PATTERN\" *: *\".*\",/\"$VERSION_PATTERN\": \"$new_version\",/" "$file" > "$file.new"
+    sed "s/\"$VERSION_FIELD\" *: *\".*\",/\"$VERSION_FIELD\": \"$new_version\",/" "$file" > "$file.new"
     mv "$file.new" "$file"
 }
 
