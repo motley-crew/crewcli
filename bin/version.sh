@@ -4,6 +4,10 @@ PROJECT_DIR="$(dirname "$0")/.."
 VERSION_FILES=""
 VERSION_FIELD="version"
 
+if [ -f "$PROJECT_DIR/.env" ]; then
+    . "$PROJECT_DIR/.env"
+fi
+
 while getopts "d:f:" opt; do
   case $opt in
     d) PROJECT_DIR="$OPTARG" ;;
