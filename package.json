@@ -1,5 +1,5 @@
 {
-  "name": "edgecli",
+  "name": "crewcli",
   "version": "0.0.1",
   "description": "A collection of bash scripts for different modules",
   "scripts": {

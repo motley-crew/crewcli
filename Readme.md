@@ -1,4 +1,4 @@
-# EdgeCLI
+# Crew CLI
 
 This package provides a collection of bash scripts to manage localization tasks with Lokalise and other modular functionalities.
 
@@ -13,5 +13,5 @@ Before you install and start using this package, make sure you have the followin
 To install the package globally, run:
 
 ```bash
-npm install -g edgecli
+npm install -g crewcli
 ```
