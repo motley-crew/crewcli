@@ -1,12 +1,12 @@
 {
   "name": "crewcli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A collection of bash scripts for different modules",
   "scripts": {
-    "test": "npm link && edgecli"
+    "test": "npm link && crewcli --help"
   },
   "bin": {
-    "edgecli": "./main.sh"
+    "crewcli": "./main.sh"
   },
   "keywords": ["shell", "lokalise", "cli"],
   "author": "motley-crew",
