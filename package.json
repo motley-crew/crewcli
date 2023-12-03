@@ -1,6 +1,6 @@
 {
   "name": "crewcli",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A collection of bash scripts for different modules",
   "scripts": {
     "test": "npm link && crewcli --help"

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Determine the directory where this script resides
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
 print_usage() {
     cat <<EOF
 Usage: ${0} [command] [options]
@@ -13,11 +16,11 @@ EOF
 }
 
 lokalise() {
-     ./bin/lokalise.sh "$@"
+    "$DIR/bin/lokalise.sh" "$@"
 }
 
 version() {
-      ./bin/version.sh "$@"
+    "$DIR/bin/version.sh" "$@"
 }
 
 main() {
