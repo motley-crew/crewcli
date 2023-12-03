@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Determine the directory where this script resides
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 print_usage() {
