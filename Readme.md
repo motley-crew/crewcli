@@ -1,4 +1,4 @@
-# Crew CLI
+# Crew CLI (WORK IN PROGRESS)
 
 This package provides a collection of bash scripts to manage localization tasks with Lokalise and other modular functionalities.
 
